@@ -1,0 +1,38 @@
+name: Auto Preprocessing
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  preprocessing:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install Dependencies
+        run: |
+          pip install pandas
+          pip install scikit-learn
+
+      - name: Run Preprocessing Script
+        run: |
+          cd preprocessing
+          python "automate_Adinda Rizki Syabana Diva.py"
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+
+          git add .
+          git commit -m "Automated preprocessing update" || echo "No changes"
+          git push origin master
