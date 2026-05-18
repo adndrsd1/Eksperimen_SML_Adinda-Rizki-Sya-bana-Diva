@@ -2,7 +2,7 @@ import pandas as pd
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 
 def preprocessing():
-    data = pd.read_csv('Titanic-Dataset.csv')
+    data = pd.read_csv('../Titanic-Dataset.csv')
 
     data.drop(
         ['PassengerId', 'Name', 'Ticket', 'Cabin'], 
